@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "email": "deni@mail.com",
+      "password": "123456",
+      "firstname": "Denilson",
+      "lastname": "Santos",
+      "age": 22
+    },
+    {
+      "email": "denis@mail.com",
+      "password": "123456",
+      "firstname": "Denis",
+      "lastname": "Son",
+      "age": 22
+    }
+
+  ],
+  "messages": [
+    {
+      "email": "deni@mail.com",
+      "password": "123456",
+      "firstname": "Denilson",
+      "lastname": "Santos",
+      "age": 22
+    },
+    {
+      "email": "denis@mail.com",
+      "password": "123456",
+      "firstname": "Denis",
+      "lastname": "Son",
+      "age": 22
+    }
+
+  ]
+}
