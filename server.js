@@ -7,16 +7,17 @@ const router = jsonServer.router("db.json");
 // /!\ Bind the router db to the app
 app.db = router.db;
 
-const rules = auth.rewriter({
-  // Permission rules
-  users: 600,
-  messages: 640,
-  // Other rules
-  // '/posts/:category': '/posts?category=:category',
-});
+// const rules = auth.rewriter({
+//   // Permission rules
+//   users: 600,
+//   messages: 640,
+//   // Other rules
+//   // '/posts/:category': '/posts?category=:category',
+// });
 
 // You must apply the auth middleware before the router
-app.use(rules);
+
+// app.use(rules);
 app.use(auth);
 app.use(router);
 
