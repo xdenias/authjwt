@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 // import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
+// import FormControlLabel from "@material-ui/core/FormControlLabel";
+// import Checkbox from "@material-ui/core/Checkbox";
 import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
+// import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
 // import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import "./App.css";
+// import "./App.css";
+
+import { Context } from "../../context/AuthProvider";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,15 +38,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
+  const { authenticated, handleLogin, handleSubmit } = useContext(Context);
+
   const [email, setEmail] = useState("");
-  const [pass, setPass] = useState();
+  const [pass, setPass] = useState("");
+
   const classes = useStyles();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const user = { email: email, senha: pass };
-    console.log(user);
-  };
+  const user = { email: email, password: pass };
 
   const Copyright = () => {
     return (
@@ -67,7 +68,11 @@ function App() {
         <Typography component="h1" variant="h5">
           Sign in
         </Typography>
-        <form onSubmit={handleSubmit} className={classes.form} noValidate>
+        <form
+          onSubmit={(e) => handleSubmit(e, user)}
+          className={classes.form}
+          noValidate
+        >
           <TextField
             variant="outlined"
             margin="normal"
@@ -94,20 +99,21 @@ function App() {
             value={pass}
             onChange={(e) => setPass(e.target.value)}
           />
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox value="remember" color="primary" />}
             label="Remember me"
-          />
+          /> */}
           <Button
             type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            // onClick={handleLogin}
           >
             Sign In
           </Button>
-          <Grid container>
+          {/* <Grid container>
             <Grid item xs>
               <Link href="#" variant="body2">
                 Forgot password?
@@ -118,7 +124,7 @@ function App() {
                 {"Don't have an account? Sign Up"}
               </Link>
             </Grid>
-          </Grid>
+          </Grid> */}
         </form>
       </div>
       <Box mt={8}>
