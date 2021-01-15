@@ -20,37 +20,32 @@ export default function useAuth() {
 
   function handleSubmit(e, user) {
     e.preventDefault();
-    console.log(e, user);
-    const newUser = JSON.stringify(user);
-    console.log(newUser);
-
-    // axios
-    //   .post("/user", newUser)
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
-  }
-
-  async function handleLogin() {
-    const {
-      data: { token },
-    } = await axios.post("/login");
-
-    localStorage.setItem("token", JSON.stringify(token));
-    axios.defaults.headers.Authorization = `Bearer ${token}`;
-    setAuthenticated(true);
-    history.push("/users");
+    axios
+      .post("/login", user, {
+        headers: {
+          withCredentials: true,
+          "Access-Control-Allow-Origin": "http://localhost:3000",
+        },
+      })
+      .then(function (response) {
+        // console.log(response);
+        localStorage.setItem("token", JSON.stringify(response));
+        axios.defaults.headers.Authorization = `Bearer ${response}`;
+        setAuthenticated(true);
+        // console.log("Foi com sucesso");
+        history.push("/users");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   function handleLogout() {
     setAuthenticated(false);
     localStorage.removeItem("token");
     axios.defaults.headers.Authorization = undefined;
-    history.push("/login");
+    history.push("/");
   }
 
-  return { authenticated, loading, handleLogin, handleLogout, handleSubmit };
+  return { authenticated, loading, handleLogout, handleSubmit };
 }

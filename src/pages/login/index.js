@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function App() {
-  const { authenticated, handleLogin, handleSubmit } = useContext(Context);
+  const { handleSubmit } = useContext(Context);
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
