@@ -8,11 +8,12 @@ export default function Users() {
   const { handleLogout } = useContext(Context);
 
   useEffect(() => {
-    (async () => {
+    async function fetchData() {
       const { data } = await api.get("/messages");
       console.log(data);
       setUsers(data);
-    })();
+    }
+    fetchData();
   }, []);
 
   return (
